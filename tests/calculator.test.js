@@ -28,8 +28,12 @@ describe('String Calculator', () => {
             expect(add('//;\n1;2')).toBe(3);
         });
 
+        test('should handle different delimiters with negative numbers', () => {
+            expect(() => add('//;\n-1;2')).toThrow('Negative numbers are not allowed: -1');
+        });
+
         test('should handle negative numbers', () => {
-            expect(() => add('-1,2,-3')).toThrow('Negative numbers are not allowed');
+            expect(() => add('-1,2,-3')).toThrow('Negative numbers are not allowed: -1, -3');
         });
 
     });
