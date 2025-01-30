@@ -1,14 +1,15 @@
-const { checkForNewLines, checkForCustomDelimiters, checkForNegativeNumbers } = require("./lib/utils");
+const { replaceNewLinesWithComma, replaceCustomDelimitersWithComma, throwExceptionForNegativeNumbers, convertToArray, removeNumbersNotAllowedThanLimit } = require("./lib/utils");
 
 function parseInput(input) {
     if(!input || input?.trim() === '') {
         return [];
     }
-    input = checkForCustomDelimiters(input);
-    input = checkForNewLines(input);
-    checkForNegativeNumbers(input);
-
-    return input.split(',').map(number => parseInt(number));
+    input = replaceCustomDelimitersWithComma(input);
+    input = replaceNewLinesWithComma(input);
+    throwExceptionForNegativeNumbers(input);
+    arrayNumbers = convertToArray(input)
+    arrayNumbers = removeNumbersNotAllowedThanLimit(arrayNumbers)
+    return arrayNumbers;
 }
 
 function add(input) {
